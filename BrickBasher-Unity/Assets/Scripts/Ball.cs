@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Ball : MonoBehaviour
@@ -24,7 +25,7 @@ public class Ball : MonoBehaviour
     public Text scoreTxt;
 
     [Header("Ball Settings")]
-    public float initialForceY;
+    public float initialForceY; // only the y-value needs to be set in the inspector, the script will create a Vector3 with the given y-component.
     private Vector3 initialForceVector;
     public float speed;
     public GameObject paddle;
@@ -82,6 +83,7 @@ public class Ball : MonoBehaviour
 
     private void LateUpdate()
     {
+        // maintain the set speed while the ball is moving
         if (isInPlay)
         {
             rb.velocity = speed * rb.velocity.normalized;
